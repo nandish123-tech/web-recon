@@ -64,8 +64,23 @@ def _generate_pdf_sync(html_content: str) -> bytes:
     Running synchronous Playwright in a thread avoids Windows asyncio
     subprocess limitations when called from an async FastAPI endpoint.
     """
+    os.environ['PLAYWRIGHT_BROWSERS_PATH'] = '0'
+    
+    # If the user added the Puppeteer buildpack on Render, it sets this variable.
+    # We can tell Playwright to use it directly.
+    executable_path = os.environ.get("PUPPETEER_EXECUTABLE_PATH")
+    
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(
+            headless=True,
+            executable_path=executable_path,
+            args=[
+                "--no-sandbox", 
+                "--disable-setuid-sandbox", 
+                "--disable-dev-shm-usage",
+                "--single-process"
+            ]
+        )
 
         try:
             page = browser.new_page()
