@@ -3,8 +3,10 @@
  */
 import axios from 'axios'
 
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: `${API_BASE}/api`,
   timeout: 30000,
   headers: { 'Content-Type': 'application/json' },
 })
@@ -35,10 +37,10 @@ export const scansApi = {
   delete: (scanId) => api.delete(`/scans/${scanId}`),
 
   /** Get HTML report URL */
-  reportUrl: (scanId) => `/api/scans/${scanId}/report`,
+  reportUrl: (scanId) => `${API_BASE}/api/scans/${scanId}/report`,
 
   /** Get PDF report URL */
-  pdfReportUrl: (scanId) => `/api/scans/${scanId}/report/pdf`,
+  pdfReportUrl: (scanId) => `${API_BASE}/api/scans/${scanId}/report/pdf`,
 }
 
 export const healthApi = {
