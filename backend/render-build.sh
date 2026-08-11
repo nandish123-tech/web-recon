@@ -5,5 +5,8 @@ set -o errexit
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Install Playwright browser and system dependencies for PDF generation
-playwright install chromium --with-deps
+# Store Playwright browsers locally so Render caches them properly
+export PLAYWRIGHT_BROWSERS_PATH=0
+
+# Install Playwright browser (without --with-deps because Render blocks root access)
+playwright install chromium
