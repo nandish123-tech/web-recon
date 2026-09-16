@@ -35,12 +35,14 @@ This tool is intended **exclusively** for:
 
 ---
 
+
 ## Architecture
 
 ```mermaid
 graph TD
     User[Browser] -->|POST /api/scans| FastAPI
-    FastAPI -->|background thread| Engine[Recon Engine]
+    FastAPI -->|Background Thread| Engine[Recon Engine]
+
     Engine --> WHOIS[WHOIS Module]
     Engine --> DNS[DNS Module]
     Engine --> IP[IP Module]
@@ -48,12 +50,12 @@ graph TD
     Engine --> SSL[SSL/TLS Module]
     Engine --> WebFiles[WebFiles Module]
     Engine --> Security[Security Module]
+
     FastAPI --> SQLite[(SQLite)]
-    User -->|GET /api/scans/{id} polling| FastAPI
+
+    User -->|GET scan status polling| FastAPI
     FastAPI -->|Jinja2| Report[HTML Report]
 ```
-
----
 
 ## Technology Stack
 
