@@ -1,8 +1,9 @@
-# Web Reconnaissance Automation Framework — ReconScope
+<img width="1920" height="948" alt="image" src="https://github.com/user-attachments/assets/5340eb42-16c3-4c54-a8bb-cf022de373f9" /># Web Reconnaissance Automation Framework — ReconScope
 
 A production-quality, full-stack web reconnaissance automation platform for authorized security testing.
 
-![ReconScope Dashboard](docs/screenshot-placeholder.png)
+![ReconScope Dashboard](/home/cyber/Pictures/Screenshots/Screenshot From 2026-09-16 17-33-27.png)
+
 
 ---
 
